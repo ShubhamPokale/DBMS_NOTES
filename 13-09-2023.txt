@@ -1,0 +1,576 @@
+mysql> create table t1(c1 int primary key auto_increment, c2 int);
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> desc t1;
++-------+------+------+-----+---------+----------------+
+| Field | Type | Null | Key | Default | Extra          |
++-------+------+------+-----+---------+----------------+
+| c1    | int  | NO   | PRI | NULL    | auto_increment |
+| c2    | int  | YES  |     | NULL    |                |
++-------+------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into t1(c1, c2) values(default, 1),(100, 2);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from t1;
++-----+------+
+| c1  | c2   |
++-----+------+
+|   1 |    1 |
+| 100 |    2 |
++-----+------+
+2 rows in set (0.00 sec)
+
+mysql> insert into t1(c1, c2) values(default, 3)
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from t1;
++-----+------+
+| c1  | c2   |
++-----+------+
+|   1 |    1 |
+| 100 |    2 |
+| 101 |    3 |
++-----+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into t1(c1, c2) values(50, 4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from t1;
++-----+------+
+| c1  | c2   |
++-----+------+
+|   1 |    1 |
+|  50 |    4 |
+| 100 |    2 |
+| 101 |    3 |
++-----+------+
+4 rows in set (0.00 sec)
+
+mysql> update t1 set c1=7;
+ERROR 1062 (23000): Duplicate entry '7' for key 't1.PRIMARY'
+mysql> update t1 set c1=7 where c1=100;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from t1;
++-----+------+
+| c1  | c2   |
++-----+------+
+|   1 |    1 |
+|   7 |    2 |
+|  50 |    4 |
+| 101 |    3 |
++-----+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into t1(c1, c2) values(7, 5);
+ERROR 1062 (23000): Duplicate entry '7' for key 't1.PRIMARY'
+mysql> insert into t1(c1, c2) values(7, 5);
+ERROR 1062 (23000): Duplicate entry '7' for key 't1.PRIMARY'
+mysql> insert into t1(c1, c2) values(7, 5);
+ERROR 1062 (23000): Duplicate entry '7' for key 't1.PRIMARY'
+mysql> insert into t1(c1, c2) values(default, 5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from t1;
++-----+------+
+| c1  | c2   |
++-----+------+
+|   1 |    1 |
+|   7 |    2 |
+|  50 |    4 |
+| 101 |    3 |
+| 102 |    5 |
++-----+------+
+5 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> desc t1;
++-------+------+------+-----+---------+----------------+
+| Field | Type | Null | Key | Default | Extra          |
++-------+------+------+-----+---------+----------------+
+| c1    | int  | NO   | PRI | NULL    | auto_increment |
+| c2    | int  | YES  |     | NULL    |                |
++-------+------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from t1;
++-----+------+
+| c1  | c2   |
++-----+------+
+|   1 |    1 |
+|   7 |    2 |
+|  50 |    4 |
+| 101 |    3 |
+| 102 |    5 |
++-----+------+
+5 rows in set (0.00 sec)
+
+mysql> delete from t1;
+Query OK, 5 rows affected (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into t1(c1, c2) values(default, 6);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from t1;
++-----+------+
+| c1  | c2   |
++-----+------+
+| 103 |    6 |
++-----+------+
+1 row in set (0.00 sec)
+
+mysql> drop table t1;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> create table t1(c1 int, c2 int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | YES  |     | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table t1 add primary key(c1);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   | PRI | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table t1 drop primary key;
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   |     | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from t1;
+Empty set (0.00 sec)
+
+mysql> insert into t1 values(1,1),(2,2);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into t1 values(1,1),(2,2);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from t1;
++----+------+
+| c1 | c2   |
++----+------+
+|  1 |    1 |
+|  2 |    2 |
+|  1 |    1 |
+|  2 |    2 |
++----+------+
+4 rows in set (0.00 sec)
+
+mysql> alter table t1 add primary key(c1);
+ERROR 1062 (23000): Duplicate entry '1' for key 't1.PRIMARY'
+mysql> update t1 set c1=null;
+ERROR 1048 (23000): Column 'c1' cannot be null
+mysql>
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   |     | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table t1 add column c3 int;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   |     | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
+| c3    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table t1 add column c0 int first;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c0    | int  | YES  |     | NULL    |       |
+| c1    | int  | NO   |     | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
+| c3    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table t1 add column c4 int after c1;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c0    | int  | YES  |     | NULL    |       |
+| c1    | int  | NO   |     | NULL    |       |
+| c4    | int  | YES  |     | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
+| c3    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter t1 modify column c4 varchar(10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 't1 modify column c4 varchar(10)' at line 1
+mysql> alter table t1 modify column c4 varchar(10);
+Query OK, 4 rows affected (0.10 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| c0    | int         | YES  |     | NULL    |       |
+| c1    | int         | NO   |     | NULL    |       |
+| c4    | varchar(10) | YES  |     | NULL    |       |
+| c2    | int         | YES  |     | NULL    |       |
+| c3    | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table t1 modify column c4 varchar(30);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| c0    | int         | YES  |     | NULL    |       |
+| c1    | int         | NO   |     | NULL    |       |
+| c4    | varchar(30) | YES  |     | NULL    |       |
+| c2    | int         | YES  |     | NULL    |       |
+| c3    | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table t1 drop column c4;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c0    | int  | YES  |     | NULL    |       |
+| c1    | int  | NO   |     | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
+| c3    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> drop table t1;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table t1(c1 int);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into t1 values(1),(2),(3);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from t1;
++------+
+| c1   |
++------+
+|    1 |
+|    2 |
+|    3 |
++------+
+3 rows in set (0.00 sec)
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> alter table t1 add column c2 int;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | YES  |     | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from t1;
++------+------+
+| c1   | c2   |
++------+------+
+|    1 | NULL |
+|    2 | NULL |
+|    3 | NULL |
++------+------+
+3 rows in set (0.00 sec)
+
+mysql> alter table t1 drop column c2;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> alter table t1 add column c2 int primary key auto_increment;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from t1;
++------+----+
+| c1   | c2 |
++------+----+
+|    1 |  1 |
+|    2 |  2 |
+|    3 |  3 |
++------+----+
+3 rows in set (0.00 sec)
+
+mysql> drop table t1;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table t1(c1 int, c2 int unique key, c3 int, primary key(c1), constraint uni_c3 uique key(c3));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'uique key(c3))' at line 1
+mysql> create table t1(c1 int, c2 int unique key, c3 int, primary key(c1), constraint uni_c3 unique key(c3));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   | PRI | NULL    |       |
+| c2    | int  | YES  | UNI | NULL    |       |
+| c3    | int  | YES  | UNI | NULL    |       |
++-------+------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc information_schema.table_constraints;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| CONSTRAINT_CATALOG | varchar(64) | YES  |     | NULL    |       |
+| CONSTRAINT_SCHEMA  | varchar(64) | YES  |     | NULL    |       |
+| CONSTRAINT_NAME    | varchar(64) | YES  |     | NULL    |       |
+| TABLE_SCHEMA       | varchar(64) | YES  |     | NULL    |       |
+| TABLE_NAME         | varchar(64) | YES  |     | NULL    |       |
+| CONSTRAINT_TYPE    | varchar(11) | NO   |     |         |       |
+| ENFORCED           | varchar(3)  | NO   |     |         |       |
++--------------------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> select TABLE_NAME,CONSTRAINT_NAME, CONSTRAINT_TYPE from information_schema.table_constraints where CONSTRAINT_SCHEMA='saleel';
++------------+-----------------+-----------------+
+| TABLE_NAME | CONSTRAINT_NAME | CONSTRAINT_TYPE |
++------------+-----------------+-----------------+
+| t1         | c2              | UNIQUE          |
+| t1         | PRIMARY         | PRIMARY KEY     |
+| t1         | uni_c3          | UNIQUE          |
++------------+-----------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc t;
+ERROR 1146 (42S02): Table 'saleel.t' doesn't exist
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   | PRI | NULL    |       |
+| c2    | int  | YES  | UNI | NULL    |       |
+| c3    | int  | YES  | UNI | NULL    |       |
++-------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from t1;
+Empty set (0.00 sec)
+
+mysql> insert into t1(c1, c2, c3) values (1+1+1,10, null);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from t1;
++----+------+------+
+| c1 | c2   | c3   |
++----+------+------+
+|  3 |   10 | NULL |
++----+------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into t1(c1, c2, c3) values (1,null, null);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from t1;
++----+------+------+
+| c1 | c2   | c3   |
++----+------+------+
+|  1 | NULL | NULL |
+|  3 |   10 | NULL |
++----+------+------+
+2 rows in set (0.00 sec)
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   | PRI | NULL    |       |
+| c2    | int  | YES  | UNI | NULL    |       |
+| c3    | int  | YES  | UNI | NULL    |       |
++-------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table t1 drop unique key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unique key' at line 1
+mysql>
+mysql>
+mysql> alter table t1 drop index c2;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   | PRI | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
+| c3    | int  | YES  | UNI | NULL    |       |
++-------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table t1 drop index c3;
+ERROR 1091 (42000): Can't DROP 'c3'; check that column/key exists
+mysql>
+mysql> alter table t1 drop index uni_c3;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   | PRI | NULL    |       |
+| c2    | int  | YES  |     | NULL    |       |
+| c3    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table t1 add unique key(c2);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select TABLE_NAME,CONSTRAINT_NAME, CONSTRAINT_TYPE from information_schema.table_constraints where CONSTRAINT_SCHEMA='saleel';
++------------+-----------------+-----------------+
+| TABLE_NAME | CONSTRAINT_NAME | CONSTRAINT_TYPE |
++------------+-----------------+-----------------+
+| t1         | c2              | UNIQUE          |
+| t1         | PRIMARY         | PRIMARY KEY     |
++------------+-----------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table t1 add constraint uni_c3 unique key(c3);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   | PRI | NULL    |       |
+| c2    | int  | YES  | UNI | NULL    |       |
+| c3    | int  | YES  | UNI | NULL    |       |
++-------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select TABLE_NAME,CONSTRAINT_NAME, CONSTRAINT_TYPE from information_schema.table_constraints where CONSTRAINT_SCHEMA='saleel';
++------------+-----------------+-----------------+
+| TABLE_NAME | CONSTRAINT_NAME | CONSTRAINT_TYPE |
++------------+-----------------+-----------------+
+| t1         | c2              | UNIQUE          |
+| t1         | PRIMARY         | PRIMARY KEY     |
+| t1         | uni_c3          | UNIQUE          |
++------------+-----------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> drop table t1;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table t1(c1 int primary key unique);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc t1;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| c1    | int  | NO   | PRI | NULL    |       |
++-------+------+------+-----+---------+-------+
+1 row in set (0.01 sec)
+
+mysql> select TABLE_NAME,CONSTRAINT_NAME, CONSTRAINT_TYPE from information_schema.table_constraints where CONSTRAINT_SCHEMA='saleel';
++------------+-----------------+-----------------+
+| TABLE_NAME | CONSTRAINT_NAME | CONSTRAINT_TYPE |
++------------+-----------------+-----------------+
+| t1         | c1              | UNIQUE          |
+| t1         | PRIMARY         | PRIMARY KEY     |
++------------+-----------------+-----------------+
+2 rows in set (0.01 sec)
+
+mysql> drop table t1;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql>
+
+
+
+
+
+-----------------------------------------------------------
