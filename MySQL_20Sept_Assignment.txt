@@ -1,0 +1,165 @@
+
+create following tables and solve following questions
+1.faculty(fi d(PK),fname,sp.skill1,sp.skill2)
+create table faculty(
+fid int primary key,
+fname varchar(20) not null,
+sp_skill1 varchar(20),
+sp_skill2 varchar(20));
+
+faculty
+fid fname spskill1 spskill2
+10 Amol database JAVA
+11 Asha JAVA MySQL
+12 Kiran CPP Database
+13 Seeta MySQL database
+
+insert into faculty values(10,'AMOL','DATABASE','JAVA');
+insert into faculty values(11,'ASHA','JAVA','MySQL');
+insert into faculty values(12,'KIRAN','CPP','DATABASE');
+insert into faculty values(13,'Seeta','MySQL','DATABASE');
+****************************************************************
+2.courses(cid(PK),cname,rid,fi d(FK))
+create table courses(
+cid int primary key,
+cname varchar(20),
+rid int,
+fid int,
+constraint fk_fid foreign key(fid) references faculty(fid)
+on delete set null);
+
+cid cname rid fid
+121 DBDA 100 10
+131 DAC 101
+141 DTISS
+151 DIOT 105 12
+
+insert into courses values(121,'DBDA',100,10);
+insert into courses values(131,'DAC',101,NULL);
+insert into courses values(141,'DTISS',NULL,NULL);
+insert into courses values(151,'DIOT',105,12);
+
+********************************************************
+3.room(roomid,rname,rloc)
+create table room(
+roomid int primary key,
+rname varchar(20),
+rloc varchar(20));
+
+Room (roomid rname rloc)
+100 Ruby 1st floor
+101 Pearl 2nd floor
+105 Diamond 1st floor
+103 Emerald 1st floor
+
+insert into room values(100,'RUBY','1st Floor');
+insert into room values(101,'PEARL','2nd Floor');
+insert into room values(105,'DIAMOND','1st Floor');
+insert into room values(103,'EMERALD','1st Floor'); 
+
+*****************************************************************
+4.list all courses for which no room is assigned and all rooms 
+which are available
+
+
+*******************************************************************
+5.list all faculties who are not allocated to any course and rooms which 
+are not allocated to any course.
+SOL:
+
+
+*******************************************************************
+6.list all rooms which are allocated or not allocated to any courses
+SOL:
+
+**********************************************************************
+7.list all rooms which are not allocated to any courses
+
+**********************************************************************
+8.display courses and faculty assigned to those courses whose
+special skill is database.
+
+***********************************************************************
+9.display time table ---
+it should contain course details , faculty and room details
+
+************************************************************************
+10.create following tables with given constraints
+product---- qty >0, price default 20.00,pname not null and unique
+And Insert Data like following.
+prodid pname qty price cati d sid
+123 lays 30 30.00 1 12
+111 pepsi 40 50.00 4 11
+134 nachos 50 50.00 1 12
+124 dairy milk 40 60.00 2 14
+124 pringles 40 60.00 1 14
+
+create table product(
+pid int primary key,
+pname varchar(20)unique not null,
+qty int check(qty>0),
+price decimal(9,2) default 20.00,
+catid int,
+sid int,
+constraint fk_catid foreign key(catid) references category(catid));
+
+
+**************************************************************************
+salesman ----- sname -----not null
+sid sname city
+11 Rahul Pune
+12 Kirti Mumbai
+13 Prasad Nashik
+14 Arnav Sangli
+
+create table salesman(
+sid int primary key,
+sname varchar(20) not null,
+city varchar(20));
+
+insert into salesman values(11,'RAHUL','PUNE');
+insert into salesman values(12,'KIRTI','MUMBAI');
+insert into salesman values(13,'PRASAD','NASHIK');
+insert into salesman values(14,'ARNAV','AMRAVATI');
+
+****************************************************************************
+category ---- cname unique and not null
+cid cname descripti on
+1 chips very crunchy
+2 chocolate very chocolaty
+3 snacks yummy
+4 cold drinks thanda thanda cool cool
+
+create table category(
+catid int primary key,
+cname varchar(20) unique not null,
+description varchar(30));
+
+insert into category values(1,'CHIPS','VERY CRUNCHY');
+insert into category values(2,'CHOCOLATE','VERY CHOCOLATY');
+insert into category values(3,'SNACKS','YUMMY');
+insert into category values(4,'COLD DRINKS','THANDA THANDA COOL COOL');
+*****************************************************************************
+11.List all products with category chips
+
+**************************************************************************
+12.display all products sold by kirti
+
+**************************************************************************
+13.display all salesman who do not sold any product
+
+**************************************************************************
+14.display all category for which no product is there
+
+***************************************************************************
+15.display all products with no category assigned
+
+***************************************************************************
+16.list all salesman who stays in city with name starts with P or N
+
+
+****************************************************************************
+17.Add new column in salesman table by name credit limit.
+
+
+

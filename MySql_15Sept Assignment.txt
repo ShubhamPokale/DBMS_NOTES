@@ -1,32 +1,7 @@
 1. Write a query to find length of text in Employee name.
-ANS:
-
- SELECT ENAME AS EMPLOYEE_NAME, LENGTH(ENAME) AS Length_of_Employee FROM emp;
-+---------------+--------------------+
-| EMPLOYEE_NAME | Length_of_Employee |
-+---------------+--------------------+
-| SMITH         |                  5 |
-| ALLEN         |                  5 |
-| WARD          |                  4 |
-| JONES         |                  5 |
-| MARTIN        |                  6 |
-| BLAKE         |                  5 |
-| CLARK         |                  5 |
-| SCOTT         |                  5 |
-| KING          |                  4 |
-| TURNER        |                  6 |
-| ADAMS         |                  5 |
-| JAMES         |                  5 |
-| FORD          |                  4 |
-| MILLER        |                  6 |
-+---------------+--------------------+
-14 rows in set (0.00 sec)
 
 
 2.Write query for all employees that resumed in the past year (where hiredate > the date of a year ago).
-ANS:  SELECT ENAME, HIREDATE FROM emp WHERE HIREDATE > (NOW()-1);
-Empty set (0.00 sec)
-
 
 
 3. write a SQL query to find those employees with hire date in the format like February 22, 1991. 

@@ -1,0 +1,67 @@
+1. List empcode,empno,name,job for each employee(note:empcode is3 to 5 characters from name and last 2 characters of job)
+
+
+2. Display thousand separator and $ symbol for comm if it is null then display is null then diaply as 0 for all employees whose name starts with 
+A and ends with N.
+
+
+3. Display empid,name, sal,comm,remark Remark should base on following conditions comm>=600 "Excellent keep it up" if it <600 or not null
+"good" otherwise "need imporvement".
+
+
+4. Display empid,name,deptno and department name by using following conditions dept 10 then"HR" if 20 then"ADMIN" if 30 then"ACCOUNTS" otherwise "PURCHASE".
+
+
+5. List all employees with sal >smiths sal
+
+6. List all employess with sal> either Smiths sal or allens sal
+
+
+7. list all employees who are working in Smiths department
+
+
+8. List all employees who earn more than avg sal of dept 10
+
+
+9. List all employees who earn more than average salary of their own
+department.
+
+10. List all employees who earn more than avg salary of their own
+department.
+
+
+11. list all employees whoe earn sal <than thier manager salary
+
+
+12. List all employees who are earning more than average salary 
+of their job.
+
+
+13. a. create table mydept_DBDA(deptid number primary key, dname
+varchar(20) not null unique,dloc varchar2(20)
+
+
+
+14. create table myemployee(empno number(5) primary key, fname varchar
+(15) not null,mname varchar2(15),Iname varchar(15) not null, sal number(9,2)
+check sal>=1000, doj date default sysdate, passpotnum varchar(15)
+unique, deptno constarints fk_deptno references mydept_DBDA(deptid)
+on delete cascade)
+
+
+15. 
+create table studentInfo(
+sid int primary key,
+sname varchar(30)not null);
+
+create table course(
+cid int primary key,
+cname varchar(20));
+
+create table marks(
+sid int,
+cid int,
+marks int(3),
+constraint fk_sid foreign key(sid) references student(sid)
+on delete cascade,
+constraint fk_cid foreign key(cid) references course(cid));

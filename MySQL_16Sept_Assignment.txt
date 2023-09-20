@@ -1,0 +1,85 @@
+1. write a SQL query to identify those employees who have been working as a SALESMAN and month portion of the experience is more than 10. Return complete information about the employees.
+>>select * from emp where job='salesman' and extract(month from age(curdate(),hiredate))>10;
+
+2. write a query in SQL to find those employees where -
+a. the employees receive some commission which should not be more than the salary and annual salary including commission is below 34000.
+b. Designation is ‘SALESMAN’ and working in the department ‘3001’. Return employee ID, employee name, salary and job name.
+>>select ename sal+com<34000 annual_sal from emp where comm<sal;
+>>select empno,ename,sal,job from emp where deptno=3001;
+
+3. write a SQL query to search for all employees with an annual salary between 2400 and 5000 (Begin and end values are included.)
+>>select * from emp where sal>=2400 and sal<=5000;
+
+4. write a SQL query to find out which employees are working under the managers 63679, 68319, 66564, or 69000.
+>>select * from emp where mgr=63679 or mgr=68319 or mgr=66564 or mgr=69000;
+
+5. write a SQL query to find the employees and their salaries. Sort the result-set in ascending order by salaries.
+>>select ename,sal from emp order by sal;
+
+6. write a SQL query to list employees in ascending order on department ID and descending order on jobs.
+>>select deptno,job,ename from emp order by deptno,job desc;
+
+7. write a SQL query to sort the unique jobs in descending order. Return job name.
+>>select job from emp order by job desc;
+
+8. write a SQL query to rank the employees according to their annual salary in ascending order. Return employee ID, employee name, monthly salary, salary/30 as Daily_Salary, and 12*salary as Anual_Salary.
+>>select empno,ename,sal,(sal/30) month_sal,(sal*12) annual_sal from emp order by annual_sal; 
+
+9. write a SQL query to find those employees who are either 'CLERK' or 'ANALYST’. Sort the result set in descending order on job_name.
+>>select * from emp where job='clerk' or job='analyst' order by job desc;
+
+10. write a SQL query to find those employees who earn less than 1000. Sort the result-set in ascending order by salary.
+>>select sal from emp where sal<1000 order by sal;
+
+11. write a SQL query to list the employees in the ascending order by job title and in descending order by employee ID.
+ >> select * from emp order by job asc,emp
+
+12. write a SQL query to list all the employees except the PRESIDENT and the MANAGER in ascending order of salaries.
+
+
+13. write a SQL query to find the highest salary
+
+14. write a SQL query to find those employees whose salary is in the range of minimum and maximum salary (Begin and end values are included.).
+
+15. write a SQL query to identify departments with fewer than four employees.Return department ID, number of employees.
+
+
+16. write a SQL query to find number of employees and average salary. Group the result set on department id and job name. Return number of employees, average salary, department ID, and job name.
+
+
+17. write a SQL query to identify those employees whose names begin with 'A' and are six characters long. Return employee name.
+
+
+18.  write a SQL query to find those employees whose name is six characters in length, starting with 'A' and ending with 'N'. Return number of employees.
+
+
+19. write a SQL query to find those employees whose names contain the character set 'AR' together.
+
+
+20. write a SQL query to find those employees whose ID not start with the digit 68. Return employee ID, employee ID using trim function.
+
+
+21. write a SQL query to find those employees who joined in any month, but the name of the month contain the character ‘A’ in second position. Return complete information about the employees.
+SELECT *
+
+22. write a query to display the departments where the sum of salaries is 50,000 or more.
+SELECT Department, sum(Salary) as Salary
+FROM employee
+GROUP BY department
+HAVING SUM(Salary) >= 20000;
+
+23.
+CREATE TABLE Student(
+   student Varchar(20),
+   percentage int
+);
+
+Add value to the table:
+
+INSERT INTO Student VALUES ('Isha Patel', 98)
+INSERT INTO Student VALUES ('Harsh Das', 94)
+INSERT INTO Student VALUES ('Rachit Sha', 93)
+INSERT INTO Student VALUES ('Sumedha', 98)
+INSERT INTO Student VALUES ('Rahat Ali', 98)
+
+write a query to find the students having percentage more than 95.
