@@ -1,0 +1,49 @@
+1.Insert one row in mydept table
+insert into mydept_DBDA values(40,'ACCOUNTS','AMRAVATI');
+**********************************************************
+2.Update employee sal increase sal of each employee by 15 % sal +comm, 
+change the job to manager and mgr to 7777 for all employees in deptno 10.
+
+****************************************
+3.Change job of smith to senior clerk
+
+********************************************
+4.Increase salary of all employees by 15% 
+if they are earning some commission
+
+*********************************************
+5.delete all employees working in allen's department 
+
+********************************************************
+6.change salary of Alan to the salary of Miller.
+
+*************************************************************
+7.change salary of all employees who working in FORD's department to the salary of Miller.
+
+****************************************************************************
+8.display employee name and department
+
+*****************************************************************************
+9.display empno,name,department name and grade (use emp,dept and salgrade table)
+
+***************************************************************************
+10.list all employees number,name, mgrno and manager name
+
+***************************************************************************
+11. Solve following using alter table
+add primary key constraint on emp,dept,salgrade
+emp ---- empno
+dept--- deptno
+salgrade--- grade
+
+***************************************************************************
+12.add foreign key constarint in emp from dept table column is deptno
+
+***************************************************************************
+13. add new column in emp table netsal with constraint default 1000
+
+*****************************************************************************
+14.list all employees with sal < allen's sal and salary > smith's sal
+
+**********************************************************************************
+15.list all employees who are working in purchase department
